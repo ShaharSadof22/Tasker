@@ -4,7 +4,7 @@ import { taskService } from "../../services/taskService";
 export function loadTasks() {
   return async (dispatch) => {
     try {
-      
+
       const tasks = await taskService.query();
       dispatch({ type: "SET_TASKS", tasks });
     } catch (err) {
@@ -23,7 +23,16 @@ export function updateTask(task) {
     }
   };
 }
-
+export function addTask(title) {
+  return async (dispatch) => {
+    try {
+      const board = await taskService.create(title);
+      dispatch({ type: "ADD_BOARD", board });
+    } catch (err) {
+      console.log(`ERROR: while adding board`);
+    }
+  };
+}
 
 // export function removeBoard(id) {
 //   return async (dispatch) => {
@@ -35,16 +44,7 @@ export function updateTask(task) {
 //     }
 //   };
 // }
-// export function addBoard(txt, imgUrl) {
-//   return async (dispatch) => {
-//     try {
-//       const board = await taskService.create(txt, imgUrl);
-//       dispatch({ type: "ADD_BOARD", board });
-//     } catch (err) {
-//       console.log(`ERROR: while adding board`);
-//     }
-//   };
-// }
+
 // export function updateBoardFromSocket(board) {
 //   //Someone else updated the board
 //   return (dispatch) => {

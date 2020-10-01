@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 // import { Link } from 'react-router-dom'
 
-import {TaskPage} from './pages/TaskPage.js';
+import {TaskPage} from './pages/TaskPage';
 
 function App() {
   return (

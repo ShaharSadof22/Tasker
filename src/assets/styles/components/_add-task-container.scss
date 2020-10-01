@@ -1,0 +1,18 @@
+.add-task-container{
+    width: 100%;
+    margin-bottom: 50px;;
+
+    .add-task-input{
+        width: 100%;
+    }
+    .add-task-btn{
+        width: 90px;
+        height: 40px;
+        background: #FF9800;
+        color: white;
+
+        &:hover{
+            background: #FF5722;
+        }
+    }
+}

@@ -23,22 +23,11 @@ function update(task) {
 function removeBoard(boardId) {
   return httpService.delete(`board/${boardId}`);
 }
-function create(txt, imgUrl) {
-  const board = _createBoard(txt, imgUrl)
-  return httpService.post(`board`, board);
+function create(title) {
+  const task = _getEmptyTask()
+  task.title = title;
+  return httpService.post(`task`, task);
 }
-function _createBoard(txt, imgUrl) {
-  return {
-        "title": "Go to surf",
-        "description": "Take the board and drive to the beach",
-        "importance": 3,
-        "createdAt": 23324234,
-        "lastTriedAt": null,
-        "triesCount": 0,
-        "doneAt": null
-    }
-}
-
 function makeId(length = 5) {
   var txt = '';
   var possible = '0123456789abcdefgABCDEFG';
@@ -46,4 +35,15 @@ function makeId(length = 5) {
     txt += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return txt;
+}
+function _getEmptyTask() {
+  return {
+    title: "",
+    description: "",
+    importance: 3,
+    createdAt: new Date(),
+    lastTriedAt: null,
+    triesCount: 0,
+    doneAt: null
+  }
 }
