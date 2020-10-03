@@ -4,7 +4,6 @@ import moment from 'moment';
 
 
 export function TaskPreview({ task, updateTask, removeTask, startTask }) {
-    console.log("TaskPreview -> task", task.success)
 
     const handleFocusOut = (key, value) => {
         // if (key === 'importance' && (value > 3 || value < 1)) {
@@ -18,6 +17,7 @@ export function TaskPreview({ task, updateTask, removeTask, startTask }) {
         removeTask(taskId)
     }
     const onStartTask = (task) => {
+        if(task.success) return;
         startTask(task)
     }
 

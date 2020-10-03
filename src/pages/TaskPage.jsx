@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { loadTasks, updateTask, addTask, removeTask } from '../store/actions/taskActions';
+import socketService from '../services/socketService';
+import { loadTasks, updateTask, addTask, removeTask, updateTaskFromSocket } from '../store/actions/taskActions';
 import { TaskPreview } from '../cmps/TaskPreview';
 import { AddTask } from '../cmps/AddTask';
 import { taskService } from '../services/taskService';
@@ -11,6 +12,8 @@ class _TaskPage extends Component {
 
   componentDidMount() {
     this.props.loadTasks();
+    socketService.setup();
+    socketService.on('send updated task', this.props.updateTaskFromSocket);
   }
   updateTask = (task) => {
     this.props.updateTask(task);
@@ -49,6 +52,7 @@ const mapDispatchToProps = {
   updateTask,
   addTask,
   removeTask,
+  updateTaskFromSocket
 };
 
 export const TaskPage = connect(mapStateToProps, mapDispatchToProps)(_TaskPage);

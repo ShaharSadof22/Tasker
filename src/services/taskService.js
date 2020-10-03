@@ -38,7 +38,7 @@ function _getEmptyTask() {
   return {
     title: "",
     description: "",
-    importance: 3,
+    importance: "3",
     createdAt: new Date(),
     lastTriedAt: null,
     triesCount: 0,
