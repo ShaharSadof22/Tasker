@@ -1,33 +1,24 @@
 import React from 'react'
 import EditableLabel from 'react-editable-label'
+import moment from 'moment';
 
 
-export function TaskPreview({ task, updateTask }) {
+export function TaskPreview({ task, updateTask, removeTask, startTask }) {
+    console.log("TaskPreview -> task", task.success)
 
     const handleFocusOut = (key, value) => {
-        const newTask = {...task, [key]: value}
+        // if (key === 'importance' && (value > 3 || value < 1)) {
+        //     value = 'Enter number between 1-3'
+        //     console.log('hey');
+        // }
+        const newTask = { ...task, [key]: value }
         updateTask(newTask)
     }
-    const getDateInStr = (timeStemp) => {
-        var a = new Date(timeStemp * 1000);
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        var year = a.getFullYear();
-        var month = months[a.getMonth()];
-        var date = a.getDate();
-        var hour = a.getHours();
-        var min = a.getMinutes();
-        var sec = a.getSeconds();
-        var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
-        return time;
-
+    const onRemoveTask = (taskId) => {
+        removeTask(taskId)
     }
-    const removeTask = (taskId) => {
-        console.log("removeTask -> taskId", taskId)
-
-    }
-    const startTask = (taskId) => {
-        console.log("removeTask -> taskId", taskId)
-
+    const onStartTask = (task) => {
+        startTask(task)
     }
 
     return (
@@ -41,7 +32,7 @@ export function TaskPreview({ task, updateTask }) {
                 />
                 <h5>Description</h5>
                 <EditableLabel
-                    initialValue={task.description}
+                    initialValue={task.description === '' ? 'Enter description...' : task.description}
                     save={value => { handleFocusOut('description', value) }}
                     inputClass='title-input'
                 // labelClass='header-label-class'
@@ -56,8 +47,8 @@ export function TaskPreview({ task, updateTask }) {
                     />
                 </div>
                 <div className="flex">
-                    <h5>CreatedAt:</h5>
-                    <h6 className="create-and-count">{getDateInStr(task.createdAt)}</h6>
+                    <h5>Created At:</h5>
+                    <h6 className="create-and-count">{moment(task.createdAt).format('LLLL')}</h6>
                 </div>
                 <div className="flex">
                     <h5>triesCount:</h5>
@@ -65,9 +56,14 @@ export function TaskPreview({ task, updateTask }) {
                 </div>
 
             </div>
+            {task.success !== undefined &&
+                <div className={`${task.success ? "done-task" : "feild-task"} task-success`}>
+                    <p>{task.success ? 'Done' : 'Failed'}</p>
+                </div>
+            }
             <div className="flex column space-between">
-                <button onClick={() => removeTask(task._id)}>Delete</button>
-                <button onClick={() => startTask(task._id)}>Start</button>
+                <button onClick={() => onRemoveTask(task._id)} className="remove-btn">Delete</button>
+                <button onClick={() => onStartTask(task)} className="start-btn">Start</button>
             </div>
         </div>
     )

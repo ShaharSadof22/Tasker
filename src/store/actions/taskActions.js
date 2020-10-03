@@ -26,24 +26,23 @@ export function updateTask(task) {
 export function addTask(title) {
   return async (dispatch) => {
     try {
-      const board = await taskService.create(title);
-      dispatch({ type: "ADD_BOARD", board });
+      const task = await taskService.create(title);
+      dispatch({ type: "ADD_TASK", task });
     } catch (err) {
-      console.log(`ERROR: while adding board`);
+      console.log(`ERROR: while adding task`);
     }
   };
 }
-
-// export function removeBoard(id) {
-//   return async (dispatch) => {
-//     try {
-//       await taskService.removeBoard(id);
-//       dispatch({ type: "REMOVE_BOARD", id });
-//     } catch (err) {
-//       console.log(`ERROR: while remove board`);
-//     }
-//   };
-// }
+export function removeTask(taskId) {
+  return async (dispatch) => {
+    try {
+      await taskService.remove(taskId);
+      dispatch({ type: "REMOVE_TASK", taskId });
+    } catch (err) {
+      console.log(`ERROR: while remove board`);
+    }
+  };
+}
 
 // export function updateBoardFromSocket(board) {
 //   //Someone else updated the board

@@ -18,6 +18,28 @@
     }
 
 
+    .task-success{
+        padding: 40px 30px;    
+        color: #000000ad;
+        width: 120px;
+    }
+    .done-task{
+        background-color: #00800085;
+    }
+    .feild-task{
+        background-color: #ff000061;
+    }
+    
+    .remove-btn{
+        background-color: #ab3939;
+        color: white;
+        padding: 7px;
+    }
+    .start-btn{
+        background-color: #129c12;
+        color: white;
+        padding: 7px;
+    }
 
 
 }

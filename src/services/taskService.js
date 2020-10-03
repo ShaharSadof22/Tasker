@@ -3,10 +3,11 @@ import httpService from './httpService';
 
 export const taskService = {
   query,
-  removeBoard,
+  remove,
   update,
   create,
-  makeId
+  makeId,
+  startTask
 };
 
 
@@ -14,19 +15,16 @@ export const taskService = {
 function query() {
   return httpService.get(`task`);
 }
-
-
-
 function update(task) {
   return httpService.put(`task`, task);
-}
-function removeBoard(boardId) {
-  return httpService.delete(`board/${boardId}`);
 }
 function create(title) {
   const task = _getEmptyTask()
   task.title = title;
   return httpService.post(`task`, task);
+}
+function remove(taskId) {
+  return httpService.delete(`task/${taskId}`);
 }
 function makeId(length = 5) {
   var txt = '';
@@ -44,6 +42,11 @@ function _getEmptyTask() {
     createdAt: new Date(),
     lastTriedAt: null,
     triesCount: 0,
-    doneAt: null
+    doneAt: null,
+    success:undefined
   }
+}
+async function startTask(task) {
+  const newTask = await httpService.put(`task/start`, task);
+  return newTask;
 }

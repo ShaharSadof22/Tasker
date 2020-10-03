@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { loadTasks, updateTask, addTask } from '../store/actions/taskActions';
+import { loadTasks, updateTask, addTask, removeTask } from '../store/actions/taskActions';
 import { TaskPreview } from '../cmps/TaskPreview';
 import { AddTask } from '../cmps/AddTask';
+import { taskService } from '../services/taskService';
+
 
 class _TaskPage extends Component {
 
@@ -14,8 +16,14 @@ class _TaskPage extends Component {
     this.props.updateTask(task);
   }
   addTask = (title) => {
-    console.log("addTask -> title", title)
     this.props.addTask(title)
+  }
+  removeTask = (taskId) => {
+    this.props.removeTask(taskId)
+  }
+  startTask = async (task) => {
+    const newTask = await taskService.startTask(task)
+    this.props.updateTask(newTask)
   }
 
 
@@ -24,8 +32,8 @@ class _TaskPage extends Component {
     return (
       <div className="task-page">
         <h2 className="task-header">Tasks</h2>
-        {tasks.map(task => <TaskPreview task={task} key={task._id} updateTask={this.updateTask}/>)}
-        <AddTask addTask={this.addTask}/>
+        {tasks.map(task => <TaskPreview task={task} key={task._id} updateTask={this.updateTask} removeTask={this.removeTask} startTask={this.startTask} />)}
+        <AddTask addTask={this.addTask} />
       </div>
     );
   }
@@ -39,7 +47,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   loadTasks,
   updateTask,
-  addTask
+  addTask,
+  removeTask,
 };
 
 export const TaskPage = connect(mapStateToProps, mapDispatchToProps)(_TaskPage);

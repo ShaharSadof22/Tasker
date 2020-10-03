@@ -10,12 +10,13 @@ export class AddTask extends Component {
     }
     onAddTask = () => {
         this.props.addTask(this.state.text)
+        this.setState({text: ''})
     }
     render() {
         return (
             <div className="flex add-task-container">
             <button className="add-task-btn" onClick={this.onAddTask}>Add Task</button>
-            <input type="text" className="add-task-input" onChange={this.handleChange} />
+            <input type="text" className="add-task-input" onChange={this.handleChange} value={this.state.text}/>
         </div>
         )
     }
