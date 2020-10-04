@@ -1,27 +1,32 @@
 .task-preview{
 
     margin: 0 auto;
-    background-color: #cacaca;
+    background-color: #edc988;
     margin: 8px 0;
     padding: 7px;
-
+   
     .title-input{
         font-size: 1.125rem;
     }
+    .description-container{
+        margin-left: 40px;
+    }
     .importance-label{
-        margin:5px 4px 0 0;
+        margin-right: 4px;
     }
     .create-and-count{
-        margin: 0px 0 0 4px;
+        margin: 6px 0 0 4px;
         font-size: 1.125rem;
         font-weight: 100;
     }
-
-
+    .task-details{
+        max-width: 69%;
+    }
     .task-success{
-        padding: 40px 30px;    
+        padding: 40px 36px;
         color: #000000ad;
         width: 120px;
+        margin-right: 7px;
     }
     .done-task{
         background-color: #00800085;
@@ -29,17 +34,62 @@
     .feild-task{
         background-color: #ff000061;
     }
-    
     .remove-btn{
-        background-color: #ab3939;
-        color: white;
-        padding: 7px;
+        background-color: #d7385e;
     }
     .start-btn{
-        background-color: #129c12;
-        color: white;
-        padding: 7px;
+        background-color: #7ea04d;
+    }
+    .icons{ 
+        width: 37px;
+        color: #0000008f;
+        margin-top: 5px;
+    }
+    .header-span{
+        color: #000000db;
     }
 
+
+    @media screen and (max-width: $narrow-breakpoint){
+
+        padding: 0 3%;
+
+        .btn-container{
+            flex-direction: column;
+
+            .remove-btn{
+                margin-top: 5px;
+            }
+            .task-success{
+                padding: 40px 25px;
+                height: 107px;
+                width: 100%;
+            }
+        }
+        
+    }
+    @media screen and (max-width: $mobile-breakpoint){
+        flex-direction: column;
+
+        .task-details{
+            max-width: 100%;
+        }
+        .icons{ 
+            width: 25px;
+        }
+       .btn-container{
+        flex-direction: row;
+
+            .task-success{
+                // width: 100%;
+                height: 79px;
+                padding: 0px 103px;
+                margin-top: 4px;
+            }
+            .start-btn{
+                margin-top: 7px;
+            }
+        }
+    }
 
 }

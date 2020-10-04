@@ -41,3 +41,10 @@
 .portrait-ratio {
     @include aspect-ratio(9, 16);
 }
+
+.btn{
+    width: 107px;
+    color: white;
+    padding: 7px;
+
+}

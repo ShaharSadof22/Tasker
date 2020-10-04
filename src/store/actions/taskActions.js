@@ -45,6 +45,7 @@ export function updateTask(task) {
   };
 }
 export function updateTaskFromSocket(task) {
+  console.log('socket!!');
   //Someone else updated the task
   return (dispatch) => {
     dispatch({ type: "UPDATE_TASK", task });

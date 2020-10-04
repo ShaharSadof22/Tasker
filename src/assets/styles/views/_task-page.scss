@@ -1,9 +1,14 @@
 .task-page{
     width: 700px;
     margin: 0 auto;
-    
+
     .task-header{
         text-align: center;
         margin-top: 30px;
+    }
+
+    @media screen and (max-width: $narrow-breakpoint){
+        width: 100%;
+        
     }
 }
