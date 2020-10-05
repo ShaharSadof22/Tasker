@@ -1,4 +1,4 @@
-Tasker is a platform that you can keep your tasks in order.
+Tasker is a platform that can be used to keep your tasks in order.
 
 By default, the server performing "Done" to a task by an algorithm that fined the task with the lowerest tries count and importance. 
 The possibility to get "Done" is 50%, on the other hand, the task that performed "Done" but failed, will be sigh ad "Failed".
