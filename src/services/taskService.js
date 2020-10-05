@@ -7,7 +7,8 @@ export const taskService = {
   update,
   create,
   makeId,
-  startTask
+  startTask,
+  removeSuccess
 };
 
 
@@ -49,4 +50,8 @@ function _getEmptyTask() {
 async function startTask(task) {
   const newTask = await httpService.put(`task/start`, task);
   return newTask;
+}
+async function removeSuccess() {
+  const tasks = await httpService.put(`task/remove-success`);
+  return tasks;
 }

@@ -51,3 +51,13 @@ export function updateTaskFromSocket(task) {
     dispatch({ type: "UPDATE_TASK", task });
   };
 }
+export function removeAllSuccess() {
+  return async (dispatch) => {
+    try {
+      const tasks = await taskService.removeSuccess();
+      dispatch({ type: "SET_TASKS", tasks });
+    } catch (err) {
+      console.log(`ERROR: while remove all success`);
+    }
+  };
+}
