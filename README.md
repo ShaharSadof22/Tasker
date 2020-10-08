@@ -5,6 +5,6 @@ The possibility to get "Done" is 50%, on the other hand, the task that performed
 
 Using Socket io, the page always stays updated with the data from the backend.
 
-This application builds on React on the front side and Node and MongoDB Atlas at the backend.
+This application is end-2-end project that builds on React on the front side and Node and MongoDB Atlas at the backend.
 
 Try it now! - https://tasker-app2020.herokuapp.com/#/
